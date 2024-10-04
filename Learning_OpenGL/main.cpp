@@ -83,7 +83,12 @@ int main() {
 	
 	// declare our own shader
 	Shader shader("vertex_shader.glsl", "fragment_shader.glsl");
+	
+	shader.use();
 
+	shader.setFloat("offset", 0.5f);
+
+	glUniform3f(glGetUniformLocation(shader.id, "color_in"), 0.5f, 0.5f, 0.5f);
 	// game loop
 	while (!glfwWindowShouldClose(window)) {
 		process_input(window);
