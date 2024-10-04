@@ -361,3 +361,6 @@ MigrationBackup/
 
 # Fody - auto-generated XML schema
 FodyWeavers.xsd
+
+# glad.c file should also be ignored
+LearningOpenGL/glad.c
