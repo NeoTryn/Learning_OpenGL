@@ -9,7 +9,7 @@ Shader::Shader(const char* vertexShaderPath, const char* fragmentShaderPath) {
 	const char* vertexCode = vertexString.c_str();
 	const char* fragmentCode = fragmentString.c_str();
 
-	std::cout << "VertexShader: " << vertexCode << std::endl << "FragmentShader: " << fragmentCode << std::endl;
+	// std::cout << "VertexShader: " << vertexCode << std::endl << "FragmentShader: " << fragmentCode << std::endl;
 
 	unsigned int vertexShader, fragmentShader;
 

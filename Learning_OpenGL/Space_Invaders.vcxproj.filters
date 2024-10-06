@@ -16,6 +16,9 @@
     <Filter Include="shader">
       <UniqueIdentifier>{25d843c7-899f-4737-b6f8-deaf9ed5841b}</UniqueIdentifier>
     </Filter>
+    <Filter Include="img">
+      <UniqueIdentifier>{31322b32-9f4e-4a96-add6-21e2df1b8753}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="main.cpp">
@@ -40,5 +43,13 @@
     <ClInclude Include="Shader.hpp">
       <Filter>Headerdateien</Filter>
     </ClInclude>
+    <ClInclude Include="stb_image.h">
+      <Filter>Headerdateien</Filter>
+    </ClInclude>
+  </ItemGroup>
+  <ItemGroup>
+    <Image Include="tyler.jpg">
+      <Filter>img</Filter>
+    </Image>
   </ItemGroup>
 </Project>
