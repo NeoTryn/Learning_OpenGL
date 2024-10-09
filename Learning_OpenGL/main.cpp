@@ -3,11 +3,8 @@
 // include iostream for debug printing
 #include <iostream>
 
-// include shader class
-#include "Shader.hpp"
-
 #define STB_IMAGE_IMPLEMENTATION
-#include "stb_image.h"
+#include "Texture.hpp"
 
 // define width and height of window
 #define WIDTH 800
@@ -105,7 +102,7 @@ int main() {
 	glBindBuffer(GL_ARRAY_BUFFER, 0);
 	glBindBuffer(GL_ELEMENT_ARRAY_BUFFER, 0);
 
-	unsigned int texture;
+	/*unsigned int texture;
 	glGenTextures(1, &texture);
 	glBindTexture(GL_TEXTURE_2D, texture);
 
@@ -116,7 +113,7 @@ int main() {
 	glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MAG_FILTER, GL_LINEAR);
 
 	int width, height, nrChannels;
-	unsigned char* data = stbi_load("container.jpg", &width, &height, &nrChannels, 0);
+	unsigned char* data = stbi_load("tyler.jpg", &width, &height, &nrChannels, 0);
 
 	if (data) {
 		glTexImage2D(GL_TEXTURE_2D, 0, GL_RGB, width, height, 0, GL_RGB, GL_UNSIGNED_BYTE, data);
@@ -126,7 +123,9 @@ int main() {
 		std::cout << "Failed to load texture" << std::endl;
 	}
 
-	stbi_image_free(data);
+	stbi_image_free(data);*/
+
+	Texture texture("tyler.jpg");
 
 	// declare our own shader
 
@@ -137,7 +136,7 @@ int main() {
 		// clear the colors every frame
 		glClear(GL_COLOR_BUFFER_BIT);
 
-		glBindTexture(GL_TEXTURE_2D, texture);
+		texture.use();
 
 		// draw triangle
 		shader.use();

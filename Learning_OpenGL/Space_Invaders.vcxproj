@@ -137,6 +137,7 @@
     <ClCompile Include="glad.c" />
     <ClCompile Include="main.cpp" />
     <ClCompile Include="Shader.cpp" />
+    <ClCompile Include="Texture.cpp" />
   </ItemGroup>
   <ItemGroup>
     <None Include="fragment_shader.glsl" />
@@ -145,8 +146,10 @@
   <ItemGroup>
     <ClInclude Include="Shader.hpp" />
     <ClInclude Include="stb_image.h" />
+    <ClInclude Include="Texture.hpp" />
   </ItemGroup>
   <ItemGroup>
+    <Image Include="container.jpg" />
     <Image Include="tyler.jpg" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />

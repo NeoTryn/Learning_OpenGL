@@ -30,6 +30,9 @@
     <ClCompile Include="Shader.cpp">
       <Filter>Quelldateien</Filter>
     </ClCompile>
+    <ClCompile Include="Texture.cpp">
+      <Filter>Quelldateien</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <None Include="vertex_shader.glsl">
@@ -46,9 +49,15 @@
     <ClInclude Include="stb_image.h">
       <Filter>Headerdateien</Filter>
     </ClInclude>
+    <ClInclude Include="Texture.hpp">
+      <Filter>Headerdateien</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <Image Include="tyler.jpg">
+      <Filter>img</Filter>
+    </Image>
+    <Image Include="container.jpg">
       <Filter>img</Filter>
     </Image>
   </ItemGroup>
