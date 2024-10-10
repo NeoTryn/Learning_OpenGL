@@ -363,7 +363,8 @@ MigrationBackup/
 FodyWeavers.xsd
 
 # glad.c file should also be ignored
-LearningOpenGL/glad.c
+Learning_OpenGL/glad.c
 
-LearningOpenGL/tyler.jpg
-LearningOpenGL/container.jpg
+Learning_OpenGL/tyler.jpg
+Learning_OpenGL/container.jpg
+Learning_OpenGL/stb_image.h
