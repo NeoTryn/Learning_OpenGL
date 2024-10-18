@@ -126,7 +126,7 @@ int main() {
 	stbi_image_free(data);*/
 
 	Texture texture("tyler.jpg", GL_RGB);
-	Texture texture2("narrator.webp", GL_RGB);
+	Texture texture2("container.jpg", GL_RGB);
 
 	// declare our own shader
 	shader.use();
