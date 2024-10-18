@@ -49,18 +49,15 @@
     <ClInclude Include="Shader.hpp">
       <Filter>Headerdateien</Filter>
     </ClInclude>
-    <ClInclude Include="stb_image.h">
+    <ClInclude Include="Texture.hpp">
       <Filter>Headerdateien</Filter>
     </ClInclude>
-    <ClInclude Include="Texture.hpp">
+    <ClInclude Include="stb_image.h">
       <Filter>Headerdateien</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <Image Include="tyler.jpg">
-      <Filter>img</Filter>
-    </Image>
-    <Image Include="container.jpg">
       <Filter>img</Filter>
     </Image>
   </ItemGroup>
