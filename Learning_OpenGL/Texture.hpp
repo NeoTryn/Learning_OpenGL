@@ -11,8 +11,8 @@ class Texture {
 public:
 	unsigned int id;
 
-	Texture(const char* path);
-	void use();
+	Texture(const char* path, const long channels);
+	void use(int unit);
 };
 
 #endif

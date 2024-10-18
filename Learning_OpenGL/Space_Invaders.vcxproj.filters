@@ -41,6 +41,9 @@
     <None Include="fragment_shader.glsl">
       <Filter>shader</Filter>
     </None>
+    <None Include="narrator.webp">
+      <Filter>img</Filter>
+    </None>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Shader.hpp">

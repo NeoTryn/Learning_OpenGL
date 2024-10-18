@@ -125,9 +125,15 @@ int main() {
 
 	stbi_image_free(data);*/
 
-	Texture texture("tyler.jpg");
+	Texture texture("tyler.jpg", GL_RGB);
+	Texture texture2("narrator.webp", GL_RGB);
 
 	// declare our own shader
+	shader.use();
+	texture.use(0);
+	shader.setInt("texture1", 0);
+	texture2.use(1);
+	shader.setInt("texture2", 1);
 
 	// game loop
 	while (!glfwWindowShouldClose(window)) {
@@ -135,8 +141,6 @@ int main() {
 
 		// clear the colors every frame
 		glClear(GL_COLOR_BUFFER_BIT);
-
-		texture.use();
 
 		// draw triangle
 		shader.use();
