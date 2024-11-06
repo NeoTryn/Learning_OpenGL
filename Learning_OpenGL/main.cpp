@@ -2,6 +2,9 @@
 #include <filesystem>
 // include iostream for debug printing
 #include <iostream>
+#include <glm/glm.hpp>
+#include <glm/gtc/matrix_transform.hpp>
+#include <glm/gtc/type_ptr.hpp>
 
 #define STB_IMAGE_IMPLEMENTATION
 #include "Texture.hpp"
@@ -55,15 +58,30 @@ int main() {
 	glClearColor(0.2f, 0.3f, 0.75f, 1.0f);
 	glClear(GL_COLOR_BUFFER_BIT);
 
+	glEnable(GL_BLEND);
+	glBlendFunc(GL_SRC_ALPHA, GL_ONE_MINUS_SRC_ALPHA);
+
+
 	// print out cwd
 	// std::cout << "Current working directory: " << std::filesystem::current_path() << std::endl;
 
-	float vertices[] = {
+	/*float vertices[] = {
 		// positions           // texture coords
-		 0.5f,  0.5f, 0.0f,   1.0f, 1.0f, // top right
-		 0.5f, -0.5f, 0.0f,   1.0f, 0.0f, // bottom right
-		-0.5f, -0.5f, 0.0f,   0.0f, 0.0f, // bottom left
-		-0.5f,  0.5f, 0.0f,   0.0f, 1.0f  // top left 
+		 1.0f, 1.0f, 0.0f,   1.0f, 1.0f, // top right
+		 1.0f, 0.0f, 0.0f,   1.0f, 0.0f, // bottom right
+		 0.0f, 0.0f, 0.0f,   0.0f, 0.0f, // bottom left
+		 0.0f, 1.0f, 0.0f,   0.0f, 1.0f  // top left 
+	};*/
+
+	float vertices[] = {
+		// pos      // tex
+		0.0f, 1.0f, 0.0f, 0.0f, 1.0f,
+		1.0f, 0.0f, 0.0f, 1.0f, 0.0f,
+		0.0f, 0.0f, 0.0f, 0.0f, 0.0f,
+
+		0.0f, 1.0f, 0.0f, 0.0f, 1.0f,
+		1.0f, 1.0f, 0.0f, 1.0f, 1.0f,
+		1.0f, 0.0f, 0.0f, 1.0f, 0.0f
 	};
 
 	unsigned int indices[] = {
@@ -93,46 +111,42 @@ int main() {
 	glVertexAttribPointer(1, 2, GL_FLOAT, GL_FALSE, 5 * sizeof(float), (void*)(3 * sizeof(float)));
 	glEnableVertexAttribArray(1);
 
-	glGenBuffers(1, &EBO);
-	glBindBuffer(GL_ELEMENT_ARRAY_BUFFER, EBO);
+	//glGenBuffers(1, &EBO);
+	//glBindBuffer(GL_ELEMENT_ARRAY_BUFFER, EBO);
 
-	glBufferData(GL_ELEMENT_ARRAY_BUFFER, sizeof(indices), indices, GL_STATIC_DRAW);
+	//glBufferData(GL_ELEMENT_ARRAY_BUFFER, sizeof(indices), indices, GL_STATIC_DRAW);
 
 	// unbind VBO
 	glBindBuffer(GL_ARRAY_BUFFER, 0);
 	glBindBuffer(GL_ELEMENT_ARRAY_BUFFER, 0);
 
-	/*unsigned int texture;
-	glGenTextures(1, &texture);
-	glBindTexture(GL_TEXTURE_2D, texture);
+	Texture texture("awesomeface.png", GL_RGBA);
+	//Texture texture2("awesomeface.png", GL_RGB);
 
-	glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_WRAP_S, GL_REPEAT);
-	glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_WRAP_T, GL_REPEAT);
+	glm::mat4 view = glm::mat4(1.0f);
+	glm::mat4 projection = glm::mat4(1.0f);
+	glm::mat4 model = glm::mat4(1.0f);
 
-	glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MIN_FILTER, GL_LINEAR_MIPMAP_LINEAR);
-	glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MAG_FILTER, GL_LINEAR);
+	model = glm::rotate(model, glm::radians(45.0f), glm::vec3(0.0f, 0.0f, 1.0f));
 
-	int width, height, nrChannels;
-	unsigned char* data = stbi_load("tyler.jpg", &width, &height, &nrChannels, 0);
+	model = glm::translate(model, glm::vec3(2.0f, 0.0f, 0.0f));
 
-	if (data) {
-		glTexImage2D(GL_TEXTURE_2D, 0, GL_RGB, width, height, 0, GL_RGB, GL_UNSIGNED_BYTE, data);
-		glGenerateMipmap(GL_TEXTURE_2D);
-	}
-	else {
-		std::cout << "Failed to load texture" << std::endl;
-	}
-
-	stbi_image_free(data);*/
-
-	Texture texture("tyler.jpg", GL_RGB);
-	Texture texture2("container.jpg", GL_RGB);
+	view = glm::translate(view, glm::vec3(0.0f, 0.0f, 0.0f));
+	projection = glm::ortho(0.0f, 4.0f, 0.0f, 3.0f , -1.0f, 1.0f);
+	//projection = glm::perspective(glm::radians(45.0f), static_cast<float>(WIDTH) / static_cast<float>(HEIGHT), 0.1f, 100.0f);
+	//model = glm::rotate(model, glm::radians(45.0f), glm::vec3(0.0f, 0.0f, 1.0f));
+	//model = glm::translate(model, glm::vec3(2.0f, 0.0f, 0.0f));
 
 	// declare our own shader
 	shader.use();
 	texture.use(0);
 	shader.setInt("texture1", 0);
-	texture2.use(1);
+
+	glUniformMatrix4fv(glGetUniformLocation(shader.id , "view"), 1, GL_FALSE, glm::value_ptr(view));
+	glUniformMatrix4fv(glGetUniformLocation(shader.id, "projection"), 1, GL_FALSE, glm::value_ptr(projection));
+	glUniformMatrix4fv(glGetUniformLocation(shader.id, "model"), 1, GL_FALSE, glm::value_ptr(model));
+
+	//texture2.use(1);
 	shader.setInt("texture2", 1);
 
 	// game loop
@@ -146,8 +160,8 @@ int main() {
 		shader.use();
 		
 		glBindVertexArray(VAO);
-		glBindBuffer(GL_ELEMENT_ARRAY_BUFFER, EBO);
-		glDrawElements(GL_TRIANGLES, 6, GL_UNSIGNED_INT, 0);
+		//glBindBuffer(GL_ELEMENT_ARRAY_BUFFER, EBO);
+		glDrawArrays(GL_TRIANGLES, 0, 6);
 
 		glfwSwapBuffers(window);
 		glfwPollEvents();

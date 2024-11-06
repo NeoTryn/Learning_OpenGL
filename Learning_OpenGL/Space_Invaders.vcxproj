@@ -154,6 +154,7 @@
     <ClInclude Include="Texture.hpp" />
   </ItemGroup>
   <ItemGroup>
+    <Image Include="awesomeface.png" />
     <Image Include="container.jpg" />
     <Image Include="tyler.jpg" />
   </ItemGroup>

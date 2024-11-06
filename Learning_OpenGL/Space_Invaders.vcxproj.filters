@@ -41,9 +41,6 @@
     <None Include="fragment_shader.glsl">
       <Filter>shader</Filter>
     </None>
-    <None Include="narrator.webp">
-      <Filter>img</Filter>
-    </None>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Shader.hpp">
@@ -58,6 +55,12 @@
   </ItemGroup>
   <ItemGroup>
     <Image Include="tyler.jpg">
+      <Filter>img</Filter>
+    </Image>
+    <Image Include="container.jpg">
+      <Filter>Ressourcendateien</Filter>
+    </Image>
+    <Image Include="awesomeface.png">
       <Filter>img</Filter>
     </Image>
   </ItemGroup>
