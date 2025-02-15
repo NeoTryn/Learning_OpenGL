@@ -2,6 +2,7 @@
 
 #include<iostream>
 #include<fstream>
+#include<sstream>
 
 #include<string>
 
@@ -28,7 +29,7 @@ private:
     void checkShaderError(unsigned int shader, int type);
     void checkProgramError(unsigned int program);
 
-    const char* readShaderFromFile(std::string path);
+    std::string readShaderFromFile(std::string path);
 };
 
 #endif

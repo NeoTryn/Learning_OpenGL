@@ -1,4 +1,4 @@
-#include<glad/glad.h>
+#include"Shader.hpp"
 #include<GLFW/glfw3.h>
 
 #include <iostream>
@@ -64,7 +64,7 @@ int main() {
 	glVertexAttribPointer(0, 3, GL_FLOAT, GL_FALSE, 3 * sizeof(float), (void*)0);
 	glEnableVertexAttribArray(0);
 
-	unsigned int vertexShader, fragmentShader;
+	/*unsigned int vertexShader, fragmentShader;
 
 	vertexShader = glCreateShader(GL_VERTEX_SHADER);
 	fragmentShader = glCreateShader(GL_FRAGMENT_SHADER);
@@ -101,7 +101,10 @@ int main() {
 	glAttachShader(program, fragmentShader);
 	glLinkProgram(program);
 
-	glUseProgram(program);
+	glUseProgram(program);*/
+
+	Shader shader("../src/shader/vertex_shader.glsl", "../src/shader/fragment_shader.glsl");
+	shader.use();
 
 	int attribs;
 	glGetIntegerv(GL_MAX_VERTEX_ATTRIBS, &attribs);

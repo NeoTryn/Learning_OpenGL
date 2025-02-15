@@ -1,17 +1,22 @@
 #include "Shader.hpp"
 
 Shader::Shader(std::string vShaderPath, std::string fShaderPath) {
-    const char* vShaderSrc = Shader::readShaderFromFile(vShaderPath);
-    const char* fShaderSrc = Shader::readShaderFromFile(fShaderPath);
+    std::string vShaderSrc = Shader::readShaderFromFile(vShaderPath);
+    std::string fShaderSrc = Shader::readShaderFromFile(fShaderPath);
+
+    const char* vShaderCStr = vShaderSrc.c_str();
+    const char* fShaderCStr = fShaderSrc.c_str();
+
+    std::cout << "Fragment Shader: " << fShaderSrc << std::endl;
 
     Shader::vShaderId = glCreateShader(GL_VERTEX_SHADER);
-    glShaderSource(Shader::vShaderId, 1, &vShaderSrc, NULL);
+    glShaderSource(Shader::vShaderId, 1, &vShaderCStr, NULL);
     glCompileShader(Shader::vShaderId);
 
     Shader::checkShaderError(Shader::vShaderId, GL_VERTEX_SHADER);
 
     Shader::fShaderId = glCreateShader(GL_FRAGMENT_SHADER);
-    glShaderSource(Shader::fShaderId, 1, &fShaderSrc, NULL);
+    glShaderSource(Shader::fShaderId, 1, &fShaderCStr, NULL);
     glCompileShader(Shader::fShaderId);
 
     Shader::checkShaderError(Shader::fShaderId, GL_FRAGMENT_SHADER);
@@ -24,24 +29,27 @@ Shader::Shader(std::string vShaderPath, std::string fShaderPath) {
     Shader::checkProgramError(Shader::programId);
 }
 
-const char* Shader::readShaderFromFile(std::string path) {
-    std::string shader, line;
+std::string Shader::readShaderFromFile(std::string path) {
+    std::string shader;
 
     std::ifstream ShaderFile(path);
+    ShaderFile.exceptions (std::ifstream::failbit | std::ifstream::badbit);
 
     try {
-        std::string line;
+        std::stringstream stream;
 
-        while(getline(ShaderFile, line)) {
-            shader.append(line);
-        }
+        stream << ShaderFile.rdbuf();
+
+        ShaderFile.close();
+        shader = stream.str();
     }
-    catch(std::exception e) {
-        std::cout << e.what() << "\n";
+    catch(std::ifstream::failure e) {
+        std::cout << "Couldn't read file...\n";
     }
 
-    ShaderFile.close();
-    return shader.c_str();
+    std::cout << shader;
+
+    return shader;
 }
 
 void Shader::checkShaderError(unsigned int shader, int type) {

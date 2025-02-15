@@ -1,2 +1,5 @@
 // build folder from cmake
 build
+
+// vscode config folder
+.vscode
