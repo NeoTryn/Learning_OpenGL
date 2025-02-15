@@ -6,6 +6,8 @@ find_package(OpenGL REQUIRED)
 add_executable(Learning_OpenGL 
                 src/main.cpp
                 src/glad.c
+                src/Shader.hpp
+                src/Shader.cpp
 )
 
 target_link_libraries(Learning_OpenGL 
