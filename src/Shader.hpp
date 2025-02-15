@@ -21,10 +21,12 @@ public:
     void setBool(bool value, std::string location);
     void setFloat(float value, std::string location);
 
+    void destroyShader(unsigned int shader);
+
 private:
 
-    int checkShaderError();
-    int checkProgramError();
+    void checkShaderError(unsigned int shader, int type);
+    void checkProgramError(unsigned int program);
 
     const char* readShaderFromFile(std::string path);
 };
