@@ -8,6 +8,8 @@ add_executable(Learning_OpenGL
                 src/glad.c
                 src/Shader.hpp
                 src/Shader.cpp
+                src/stb_image.h
+                src/stb_image_implementation.cpp
 )
 
 target_link_libraries(Learning_OpenGL 
