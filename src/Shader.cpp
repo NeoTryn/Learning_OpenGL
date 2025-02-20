@@ -7,8 +7,6 @@ Shader::Shader(std::string vShaderPath, std::string fShaderPath) {
     const char* vShaderCStr = vShaderSrc.c_str();
     const char* fShaderCStr = fShaderSrc.c_str();
 
-    std::cout << "Fragment Shader: " << fShaderSrc << std::endl;
-
     Shader::vShaderId = glCreateShader(GL_VERTEX_SHADER);
     glShaderSource(Shader::vShaderId, 1, &vShaderCStr, NULL);
     glCompileShader(Shader::vShaderId);
@@ -46,8 +44,6 @@ std::string Shader::readShaderFromFile(std::string path) {
     catch(std::ifstream::failure e) {
         std::cout << "Couldn't read file...\n";
     }
-
-    std::cout << shader;
 
     return shader;
 }
